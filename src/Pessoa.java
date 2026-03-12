@@ -1,6 +1,7 @@
 public class Pessoa {
     private String nome;
     private String sobrenome;
+    private Data data_nascimento;
     private int idade;
     private double altura;
     private double peso;
@@ -9,6 +10,7 @@ public class Pessoa {
     public Pessoa() {
         this.nome = "";
         this.sobrenome = "";
+        this.data_nascimento = new Data();
         this.idade = 0;
         this.altura = 0.0;
         this.peso = 0.0;
@@ -31,6 +33,23 @@ public class Pessoa {
         this.sobrenome = sobrenome;
     }
 
+    public void setDataNascimento(Data data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+
+    public int calculaIdade(Data hoje) {
+        int idade = hoje.getAno() - this.data_nascimento.getAno();
+
+        if (hoje.getMes() < this.data_nascimento.getMes() || (
+                hoje.getMes() == this.data_nascimento.getMes() &&
+                        hoje.getDia() < this.data_nascimento.getDia()
+        )) {
+            idade--;
+        }
+
+        return idade;
+    }
+
     public int getIdade() {
         return idade;
     }
@@ -39,8 +58,16 @@ public class Pessoa {
         this.idade = idade;
     }
 
+    public double getAltura() {
+        return altura;
+    }
+
     public void setAltura(double altura) {
         this.altura = altura;
+    }
+
+    public double getPeso() {
+        return peso;
     }
 
     public void setPeso(double peso) {
