@@ -17,16 +17,8 @@ public class Pessoa {
         this.imc = 0.0;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
     }
 
     public void setSobrenome(String sobrenome) {
@@ -100,5 +92,13 @@ public class Pessoa {
         } else {
             return "Obesidade grau 3";
         }
+    }
+
+    public String montaNomeCompleto() {
+        return this.nome + " " + this.sobrenome;
+    }
+
+    public String montaNomeReferencia() {
+        return this.sobrenome + ", " + this.nome;
     }
 }

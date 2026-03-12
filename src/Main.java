@@ -11,24 +11,28 @@ public class Main {
 
             p.setNome(readLine(sc, "Digite o primeiro nome da " + (i + 1) + "° pessoa: "));
             p.setSobrenome(readLine(sc, "Digite o sobrenome " + (i + 1) + "° pessoa: "));
-            p.setDataNascimento(readDate(sc, "Digite a data de nascimento da " + (i + 1) + "° pessoa (d/m/a): "));
-            p.setIdade(p.calculaIdade(new Data()));
-            p.setAltura(readDouble(sc, "Digite a altura da " + (i + 1) + "° pessoa: "));
-            p.setPeso(readDouble(sc, "Digite o peso da " + (i + 1) + "° pessoa: "));
-            p.setImc(p.calculaIMC());
+            if (i > 0 && p.montaNomeCompleto().compareTo(pessoas[i - 1].montaNomeCompleto()) == 0) {
+                i = 10;
+            } else {
+                p.setDataNascimento(readDate(sc, "Digite a data de nascimento da " + (i + 1) + "° pessoa (d/m/a): "));
+                p.setIdade(p.calculaIdade(new Data()));
+                p.setAltura(readDouble(sc, "Digite a altura da " + (i + 1) + "° pessoa: "));
+                p.setPeso(readDouble(sc, "Digite o peso da " + (i + 1) + "° pessoa: "));
+                p.setImc(p.calculaIMC());
 
-            pessoas[i] = p;
-            count++;
+                pessoas[i] = p;
+                count++;
+            }
         }
 
         for (int i = 0; i < count; i++) {
-            System.out.println("Cadastro " + (i + 1) + ":");
-            System.out.println("Nome completo: " + pessoas[i].getNome() + " " + pessoas[i].getSobrenome());
-            System.out.println("Nome de referencia: " + pessoas[i].getSobrenome() + ", " + pessoas[i].getNome());
-            System.out.println("Idade: " + pessoas[i].getIdade());
-            System.out.println("Peso: " + pessoas[i].getPeso());
-            System.out.println("Altura: " + pessoas[i].getAltura());
-            System.out.printf("IMC: %.1f%n\n", pessoas[i].getImc());
+            System.out.println("\nCadastro " + (i + 1) + ":");
+            System.out.println("Nome completo: " + pessoas[i].montaNomeCompleto());
+            System.out.println("Nome de referencia: " + pessoas[i].montaNomeReferencia());
+            System.out.println("Idade: " + pessoas[i].getIdade() + " anos");
+            System.out.printf("Peso: %.1fkg%n", pessoas[i].getPeso());
+            System.out.printf("Altura: %.2fm%n", pessoas[i].getAltura());
+            System.out.printf("IMC: %.1f%n", pessoas[i].getImc());
             System.out.println("Classificacao: " + pessoas[i].informaObesidade());
         }
     }
