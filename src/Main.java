@@ -46,25 +46,6 @@ public class Main {
         }
     }
 
-    public static int readInt(Scanner sc, String message) {
-        while (true) {
-            System.out.print(message);
-
-            if (sc.hasNextInt()) {
-                int x = sc.nextInt();
-
-                if (x < 0) {
-                    System.out.println("Valor invalido! Digite um numero inteiro positivo.");
-                } else {
-                    return x;
-                }
-            } else {
-                System.out.println("Valor invalido! Digite um numero inteiro.");
-                sc.next();
-            }
-        }
-    }
-
     public static double readDouble(Scanner sc, String message) {
         while (true) {
             System.out.print(message);
@@ -72,7 +53,7 @@ public class Main {
             try {
                 double decimal = Double.parseDouble(sc.next().trim().replace(",", "."));
                 sc.nextLine();
-                
+
                 return decimal;
             } catch (NumberFormatException e) {
                 System.out.println("Valor inválido. Digite um numero decimal valido.");
